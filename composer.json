@@ -35,5 +35,5 @@
                 "wisdmlabs\\todolist\\TodolistServiceProvider"
             ]
         }
-    },
+    }
 }
