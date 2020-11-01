@@ -5,6 +5,7 @@
 [![license](https://img.shields.io/github/license/furic/laravel-redeem-codes.svg)](https://packagist.org/packages/furic/redeem-codes)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/?branch=main)
 [![Build Status](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/badges/build.png?b=main)](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/build-status/main)
+![GitHub](https://img.shields.io/github/license/furic/laravel-redeem-codes)
 
 > Redeem code generator and redeemer for [Laravel 5.*](https://laravel.com/). I developed this package while working for a redeem code solution in [Sweaty Chair Studio](https://www.sweatychair.com) catering for compensations and event rewards for players. This contains API for redeem code validation and a simple web console to create and edit the redeem codes. This package is aimed to be a plug-n-play solution, I would also recommend [Laravel Promocodes](https://github.com/zgabievi/laravel-promocodes) and [Laravel Vouchers](https://github.com/beyondcode/laravel-vouchers) that gives you more freedom and being able to build from scratch.
 
