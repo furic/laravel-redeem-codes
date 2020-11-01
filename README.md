@@ -1,8 +1,8 @@
 # laravel-redeem-codes
 
-[![Packagist](https://img.shields.io/packagist/v/furic/laravel-redeem-codes.svg)](https://packagist.org/packages/furic/laravel-redeem-codes)
-[![Packagist](https://img.shields.io/packagist/dt/furic/laravel-redeem-codes.svg)](https://packagist.org/packages/furic/laravel-redeem-codes)
-[![license](https://img.shields.io/github/license/furic/laravel-redeem-codes.svg)](https://packagist.org/packages/furic/laravel-redeem-codes)
+[![Packagist](https://img.shields.io/packagist/v/furic/redeem-codes.svg)](https://packagist.org/packages/furic/redeem-codes)
+[![Packagist](https://img.shields.io/packagist/dt/furic/redeem-codes.svg)](https://packagist.org/packages/furic/redeem-codes)
+[![license](https://img.shields.io/github/license/furic/redeem-codes.svg)](https://packagist.org/packages/furic/redeem-codes)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/badges/build.png?b=master)](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/build-status/master)
 
