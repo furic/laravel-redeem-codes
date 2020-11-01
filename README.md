@@ -3,8 +3,8 @@
 [![Packagist](https://img.shields.io/packagist/v/furic/redeem-codes.svg)](https://packagist.org/packages/furic/redeem-codes)
 [![Packagist](https://img.shields.io/packagist/dt/furic/redeem-codes.svg)](https://packagist.org/packages/furic/redeem-codes)
 [![license](https://img.shields.io/github/license/furic/redeem-codes.svg)](https://packagist.org/packages/furic/redeem-codes)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/badges/build.png?b=master)](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/?branch=main)
+[![Build Status](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/badges/build.png?b=main)](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/build-status/main)
 
 > Redeem code generator and redeemer for [Laravel 5.*](https://laravel.com/). I developed this package while working for a redeem code solution in [Sweaty Chair Studio](https://www.sweatychair.com) catering for compensations and event rewards for players. This contains API for redeem code validation and a simple web console to create and edit the redeem codes. This package is aimed to be a plug-n-play solution, I would also recommend [Laravel Promocodes](https://github.com/zgabievi/laravel-promocodes) and [Laravel Vouchers](https://github.com/beyondcode/laravel-vouchers) that gives you more freedom and being able to build from scratch.
 
@@ -87,4 +87,4 @@ You can simply import this repo in Unity to communicate with your Laravel server
 
 ## License
 
-laravel-redeem-codes is licensed under a [MIT License](https://github.com/furic/laravel-redeem-codes/blob/master/LICENSE).
+laravel-redeem-codes is licensed under a [MIT License](https://github.com/furic/laravel-redeem-codes/blob/main/LICENSE).
