@@ -1,0 +1,39 @@
+{
+    "name": "furic/redeem-codes",
+    "description": "The redeem code system used for creating redeem codes to compensate users, or giving rewards in events.",
+    "keywords": [
+    	"redeem code",
+    	"event",
+    	"reward",
+        "promo code",
+        "coupon code",
+        "discount code",
+        "laravel",
+        "php"
+    ],
+    "homepage": "https://github.com/furic/laravel-redeem-codes",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Richard Fu",
+            "email": "richardfu71@gmail.com"
+        }
+    ],
+    "require": {
+    	"php" : "^7.2",
+    	"laravel/framework": "~5.8||~6.0||~7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wisdmlabs\\Todolist\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "wisdmlabs\\todolist\\TodolistServiceProvider"
+            ]
+        }
+    },
+}

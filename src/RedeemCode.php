@@ -1,0 +1,44 @@
+<?php
+
+namespace Furic\RedeemCodes;
+
+use Illuminate\Database\Eloquent\Model;
+
+class RedeemCode extends Model
+{
+
+    protected $fillable = ['event_id', 'code', 'redeemed', 'reusable'];
+    protected $visible = ['event_id', 'code', 'reusable', 'rewards'];
+    protected $appends = ['rewards'];
+
+    public static function findByCode($code)
+    {
+        return SELF::where('code', $code)->first();
+    }
+
+    public function event()
+    {
+        return $this->belongsTo('Furic\RedeemCodes\Event');
+    }
+    
+    public function rewards()
+    {
+        if ($this->event != null) {
+            return $this->event->hasMany('Furic\RedeemCodes\RedeemCodeReward');
+        } else {
+            return $this->hasMany('Furic\RedeemCodes\RedeemCodeReward');
+        }
+    }
+    
+    public function getRewardsAttribute()
+    {
+        return $this->rewards()->get();
+    }
+
+    public function setRedeemed()
+    {
+        $this->redeemed = true;
+        $this->save();
+    }
+
+}
