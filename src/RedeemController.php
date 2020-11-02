@@ -2,8 +2,8 @@
 
 namespace Furic\RedeemCodes;
 
-use App\RedeemCode;
-use App\RedeemCodeHistory;
+use RedeemCode;
+use RedeemCodeHistory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;

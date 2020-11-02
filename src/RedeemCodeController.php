@@ -2,9 +2,9 @@
 
 namespace Furic\RedeemCodes;
 
-use App\Event;
-use App\RedeemCode;
-use App\RedeemCodeReward;
+use Event;
+use RedeemCode;
+use RedeemCodeReward;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
