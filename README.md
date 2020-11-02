@@ -55,7 +55,7 @@ $ php artisan migrate
 
 ### Web Console
 
-After installation, you can simply browse to `<your server url>`/redeem-codes to open the web console:
+After installation, you can simply browse to `<server url>`/redeem-codes to open the web console:
 
 ![Laravel Redeem Codes web console](https://www.richardfu.net/wp-content/uploads/laravel-redeem-codes-console.jpg)
 
@@ -71,7 +71,8 @@ Here you can browse, create and edit the redeem codes.
 
 ### Redeem Validator API
 
-Use this API to validate the redeem code: `<your server url>`/redeem. For valide redeem codes, 200 status code is returned with the redeem code JSON data. Otherwise, 400 is returned with the error.
+POST `<server url>/redeem`
+Posts the redeem code (12 characters length) and returns the redeem code data. For valid redeem codes, 200 status code is returned with the redeem code JSON data. Otherwise, 400 is returned with the error.
 
 ### Unity Client Repo
 You can simply import this repo in Unity to communicate with your Laravel server with this package:

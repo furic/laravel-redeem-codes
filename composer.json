@@ -26,13 +26,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Wisdmlabs\\Todolist\\": "src/"
+            "Furic\\RedeemCodes\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "wisdmlabs\\todolist\\TodolistServiceProvider"
+                "furic\\redeemcodes\\RedeemCodesServiceProvider"
             ]
         }
     }
