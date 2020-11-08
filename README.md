@@ -75,8 +75,7 @@ POST `<server url>/redeem`
 Posts the redeem code (12 characters length) and returns the redeem code data. For valid redeem codes, 200 status code is returned with the redeem code JSON data. Otherwise, 400 is returned with the error.
 
 ### Unity Client Repo
-You can simply import this repo in Unity to communicate with your Laravel server with this package:
-`<to be added>`
+You can simply import [this repo](https://github.com/furic/Unity-Redeem-Codes) in Unity to communicate with your Laravel server with this package.
 
 ## TODO
 
