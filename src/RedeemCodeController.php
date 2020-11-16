@@ -27,7 +27,7 @@ class RedeemCodeController extends Controller
                 $redeemCode->description = $event->name;
             }
         }
-        return view('furic.redeemcodes.index')->with('redeemCodes', $redeemCodes);
+        return view('redeem-codes:index')->with('redeemCodes', $redeemCodes);
     }
 
     /**
@@ -80,7 +80,7 @@ class RedeemCodeController extends Controller
             $redeemCodeReward->save();
         }
 
-        return view('furic.redeemcodes.added')->with('codes', $codes);
+        return view('redeem-codes:added')->with('codes', $codes);
     }
 
     private function generateRandomString($length = 10)
@@ -124,7 +124,7 @@ class RedeemCodeController extends Controller
      */
     public function edit($id)
     {
-        //
+        // TODO
     }
 
     /**
