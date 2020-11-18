@@ -43,11 +43,15 @@
         },
         {
             "type": "tidelift",
-            "url": "https://tidelift.com/lifter/package/packagist/furic-redeem-codes/"
+            "url": "https://tidelift.com/funding/github/packagist/furic/redeem-code"
         },
         {
-            "type": "other",
-            "url": "https://http://paypal.me/furic"
+            "url": "https://github.com/furic",
+            "type": "github"
+        },
+        {
+            "type": "custom",
+            "url": "https://paypal.me/furic"
         }
     ]
 }
