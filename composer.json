@@ -35,5 +35,19 @@
                 "Furic\\RedeemCodes\\RedeemCodesServiceProvider"
             ]
         }
-    }
+    },
+    "funding": [
+        {
+            "type": "patreon",
+            "url": "https://www.patreon.com/furic"
+        },
+        {
+            "type": "tidelift",
+            "url": "https://tidelift.com/lifter/package/packagist/furic-redeem-codes/"
+        },
+        {
+            "type": "other",
+            "url": "https://http://paypal.me/furic"
+        }
+    ]
 }

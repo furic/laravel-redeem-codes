@@ -1,6 +1,5 @@
 <?php
-$app->get('/redeem/{code}', 'RedeemController@redeem'); // API
-$app->get('/redeem-codes', 'RedeemCodeController@index'); // Web console
-$app->post('/redeem-codes', 'RedeemCodeController@create');
-$app->delete('/redeem-codes', 'RedeemCodeController@delete');
-$app->delete('/redeem-codes', 'RedeemCodeController@test');
+Route::get('/redeem/{code}', 'RedeemController@redeem'); // API
+Route::get('/redeem-codes', 'RedeemCodeController@index'); // Web console
+Route::post('/redeem-codes', 'RedeemCodeController@create');
+Route::delete('/redeem-codes', 'RedeemCodeController@delete');
