@@ -1,6 +1,6 @@
 <?php
 
-namespace Furic\RedeemCodes;
+namespace Furic\RedeemCodes\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

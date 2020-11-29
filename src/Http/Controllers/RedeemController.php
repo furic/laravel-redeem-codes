@@ -1,9 +1,9 @@
 <?php
 
-namespace Furic\RedeemCodes;
+namespace Furic\RedeemCodes\Http\Controllers;
 
-use RedeemCode;
-use RedeemCodeHistory;
+use Furic\RedeemCodes\Models\RedeemCode;
+use Furic\RedeemCodes\Models\RedeemCodeHistory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
