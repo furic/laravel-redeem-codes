@@ -42,9 +42,7 @@ class RedeemCodeController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response([
-                'error' => 'Data not valid.'
-            ], 400);
+            return view('redeem-codes::index')->with(['redeemCode' => $request->all(), 'message' => 'Data not valid']);
         }
 
         $event = new Event;

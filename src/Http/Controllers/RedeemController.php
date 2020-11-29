@@ -57,12 +57,13 @@ class RedeemController extends Controller
         }
 
         // Add a redeem code history
+        $data = array();
         $data['redeem_code_id'] = $redeemCode->id;
         $data['ip'] = filter_input(INPUT_SERVER, "REMOTE_ADDR");
         $data['agent'] = filter_input(INPUT_SERVER, "HTTP_USER_AGENT");
         RedeemCodeHistory::create($data);
 
-        return $redeemCode;
+        return response($redeemCode, 200);
     }
 
 }
