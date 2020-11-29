@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('vendor.redeem-codes.layouts.app')
 @section('content')
 <div class="container">
 	<div class="col-sm-offset-2 col-sm-8">
@@ -8,7 +8,7 @@
 			</div>
 			<div class="panel-body">
 				<!-- New Redeem Code Form -->
-				<form action="{{ url('redeem_codes') }}" method="PUT" class="form-horizontal">
+				<form action="{{ url('redeem-codes') }}" method="PUT" class="form-horizontal">
 					<div class="form-group">
 						<label for="redeem-code-prefix" class="col-sm-3 control-label">Redeem Code</label>
 						<div class="col-sm-9">
@@ -31,9 +31,10 @@
 						<label for="redeem-code-reward-type-1" class="col-sm-3 control-label">Rewards</label>
 						<div class="col-sm-4">
 							<select name="reward_types[]" id="redeem-code-reward-type-1" class="form-control">
-								<option value="4">Coins</option>
-								<option value="5" selected="selected">Gems</option>
-								<option value="12">Maps</option>
+								<option value="1" selected="selected">Coin</option>
+								<option value="2">Gem</option>
+								<option value="3">Level</option>
+								<option value="99">Remove Ads</option>
 							</select>
 						</div>
 						<div class="col-sm-5">
@@ -83,9 +84,10 @@
 			$('#reward-' + i).html(`
 			<div class="col-sm-4 col-sm-offset-3">
 				<select name="reward_types[]" id="redeem-code-reward-type-` + (i + 1) + `" class="form-control">
-					<option value="4">Coins</option>
-					<option value="5" selected="selected">Gems</option>
-					<option value="12">Maps</option>
+					<option value="1" selected="selected">Coin</option>
+					<option value="2">Gem</option>
+					<option value="3">Level</option>
+					<option value="99">Remove Ads</option>
 				</select>
 			</div>
 			<div class="col-sm-5">

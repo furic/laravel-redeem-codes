@@ -80,6 +80,7 @@ You can simply import [this repo](https://github.com/furic/Unity-Redeem-Codes) i
 ## TODO
 
 - Finish up the redeem code edit page.
+- Add item types conifurable in config.
 - Add admin login for web console.
 - Add tests.
 - Add redeem history page (already in database).

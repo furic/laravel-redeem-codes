@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('vendor.redeem-codes.layouts.app')
 @section('content')
 <div class="container">
 	<div class="col-sm-offset-2 col-sm-8">
@@ -8,7 +8,7 @@
 			</div>
 			<div class="panel-body">
 				<!-- New Redeem Code Form -->
-				<form action="{{ url('redeem_codes') }}" method="POST" class="form-horizontal">
+				<form action="{{ url('redeem-codes') }}" method="POST" class="form-horizontal">
 					<!-- Redeem Prefix -->
 					<div class="form-group">
 						<label for="redeem-code-prefix" class="col-sm-3 control-label">Code Prefix (Optional)</label>
@@ -38,11 +38,10 @@
 						<label for="redeem-code-reward-type-1" class="col-sm-3 control-label">Rewards</label>
 						<div class="col-sm-4">
 							<select name="reward_types[]" id="redeem-code-reward-type-1" class="form-control">
-								<option value="0" selected="selected">Coins</option>
-								<option value="1">Gems</option>
-								<option value="12">Maps</option>
-								<option value="100">Multiplay Kills</option>
-								<option value="999">Remove Ads</option>
+								<option value="1" selected="selected">Coin</option>
+								<option value="2">Gem</option>
+								<option value="3">Level</option>
+								<option value="99">Remove Ads</option>
 							</select>
 						</div>
 						<div class="col-sm-5">
@@ -116,7 +115,7 @@
                                     </div>
                                 </td>
                                 <td align="right">
-                                	<form action="{{ url('redeem_code') . '/' . $redeemCode->id }}" method="GET">
+                                	<form action="{{ url('redeem-codes') . '/' . $redeemCode->id }}" method="GET">
 							            <button type="submit" class="btn btn-default">
 							            	<i class="fa fa-btn fa-edit"></i> Edit
 							            </button>
@@ -124,7 +123,7 @@
 								</td>
 								<td align="right">
 									@if ($redeemCode->redeemed)
-                                	<form action="{{ url('redeem_code') . '/' . $redeemCode->id }}" method="POST">
+                                	<form action="{{ url('redeem-codes') . '/' . $redeemCode->id }}" method="POST">
 							            <button type="submit" class="btn btn-danger">
 							            	<i class="fa fa-btn fa-sync"></i> Reset Redeemed
 							            </button>
@@ -132,7 +131,7 @@
 									@endif
 								</td>
                                 <td align="right">
-                                	<form action="{{ url('redeem_code') . '/' . $redeemCode->id }}" method="POST">
+                                	<form action="{{ url('redeem-codes') . '/' . $redeemCode->id }}" method="POST">
 							            <input name="_method" type="hidden" value="DELETE">
 							            <button type="submit" class="btn btn-danger">
 							            	<i class="fa fa-btn fa-trash"></i> Delete
@@ -163,9 +162,10 @@
 			$('#reward-' + i).html(`
 			<div class="col-sm-4 col-sm-offset-3">
 				<select name="reward_types[]" id="redeem-code-reward-type-` + (i + 1) + `" class="form-control">
-					<option value="4">Coins</option>
-					<option value="5" selected="selected">Gems</option>
-					<option value="12">Maps</option>
+					<option value="1" selected="selected">Coin</option>
+					<option value="2">Gem</option>
+					<option value="3">Level</option>
+					<option value="99">Remove Ads</option>
 				</select>
 			</div>
 			<div class="col-sm-5">

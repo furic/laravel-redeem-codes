@@ -15,8 +15,8 @@ class CreateRedeemCodesRewardsTable extends Migration
         Schema::create('redeem_code_rewards', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('redeem_code_id')->unsigned();
-            $table->integer('event_id')->unsigned();
+            $table->integer('redeem_code_id')->unsigned()->nullable();
+            $table->integer('event_id')->unsigned()->nullable();
             $table->tinyInteger('type')->unsigned()->nullable();
             $table->integer('amount')->unsigned()->default(1);
             $table->integer('item_id')->unsigned()->nullable();

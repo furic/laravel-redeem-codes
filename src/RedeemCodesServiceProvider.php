@@ -14,10 +14,10 @@ class RedeemCodesServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadRoutesFrom(__DIR__.'/routes.php');
-        $this->loadMigrationsFrom(__DIR__.'/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../migrations');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'redeem-codes');
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/furic/redeem-codes'),
+            __DIR__.'/../resources/views' => resource_path('views/vendor/redeem-codes'),
         ]);
         // $this->publishes([
         //     __DIR__ . '/../config/redeem-codes.php' => config_path('redeem-codes.php'),
