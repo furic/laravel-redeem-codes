@@ -16,7 +16,7 @@ class RedeemController extends Controller
      * Update the specified resource in storage.
      *
      * @param  string  $code
-     * @return Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
     public function redeem($code)
     {
