@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Furic\RedeemCodes\Http\Controllers\RedeemController;
+use Furic\RedeemCodes\Http\Controllers\RedeemCodeController;
 
 Route::get('/redeem-codes', [RedeemCodeController::class, 'index'])->name('redeem-codes.index');
 Route::post('/redeem-codes', [RedeemCodeController::class, 'create'])->name('redeem-codes.create');

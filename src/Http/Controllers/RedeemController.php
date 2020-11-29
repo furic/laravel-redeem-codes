@@ -12,6 +12,12 @@ use Validator;
 class RedeemController extends Controller
 {
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  string  $code
+     * @return Illuminate\Http\Response
+     */
     public function redeem($code)
     {
         $validator = Validator::make(['code' => $code], ['code' => 'exists:redeem_codes,code']);
@@ -23,7 +29,7 @@ class RedeemController extends Controller
 
         $redeemCode = RedeemCode::findByCode($code);
 
-        if ($redeemCode->redeemed != false) {
+        if ($redeemCode->redeemed !== false) {
             return response([
                 'error' => 'Redeem code has already redeemed.'
             ], 400);
@@ -46,7 +52,7 @@ class RedeemController extends Controller
             }
         }
 
-        if ($redeemCode->reusable == false) {
+        if ($redeemCode->reusable === false) {
             $redeemCode->setRedeemed();
         }
 
