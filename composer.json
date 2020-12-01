@@ -17,7 +17,9 @@
     "authors": [
         {
             "name": "Richard Fu",
-            "email": "fur@richardfu.net"
+            "email": "fur@richardfu.net",
+            "homepage": "https://www.richardfu.net",
+            "role": "Developer"
         }
     ],
     "require": {

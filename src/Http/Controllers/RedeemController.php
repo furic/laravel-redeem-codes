@@ -13,7 +13,7 @@ class RedeemController extends Controller
 {
 
     /**
-     * Update the specified resource in storage.
+     * Check validation and redeem a given redeem code.
      *
      * @param  string  $code
      * @return \Illuminate\Http\Response

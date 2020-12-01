@@ -14,7 +14,7 @@ class RedeemCodeController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the redeem code resource.
      *
      * @return \Illuminate\View\View
      */
@@ -31,7 +31,7 @@ class RedeemCodeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new redeem code resource.
      *
      * @return \Illuminate\View\View
      */
@@ -81,6 +81,12 @@ class RedeemCodeController extends Controller
         return view('redeem-codes::added', compact('codes'));
     }
 
+    /**
+     * Generate a random string with given length.
+     *
+     * @param  int  $length
+     * @return string
+     */
     private function generateRandomString($length = 10)
     {
         $characters = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
@@ -93,7 +99,7 @@ class RedeemCodeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created redeem code resource in storage.
      *
      * @param  Request  $request
      * @return \Illuminate\View\View
@@ -104,7 +110,7 @@ class RedeemCodeController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified redeem code resource.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -115,7 +121,7 @@ class RedeemCodeController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified redeem code resource.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -126,7 +132,7 @@ class RedeemCodeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified redeem code resource in storage.
      *
      * @param  Request  $request
      * @param  int  $id
@@ -138,7 +144,7 @@ class RedeemCodeController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified redeem code resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\View\View

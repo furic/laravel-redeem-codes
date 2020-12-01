@@ -32,8 +32,8 @@ class RedeemCodesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make('Furic\RedeemCodes\RedeemCodeController');
-        $this->app->make('Furic\RedeemCodes\RedeemController');
+        $this->app->make('Furic\RedeemCodes\Http\Controllers\RedeemCodeController');
+        $this->app->make('Furic\RedeemCodes\Http\Controllers\RedeemController');
         // $this->mergeConfigFrom(
         //     __DIR__ . '/../config/redeem-codes.php', 'redeem-codes'
         // );
