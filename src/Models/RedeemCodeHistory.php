@@ -11,7 +11,7 @@ class RedeemCodeHistory extends Model
 
     public function redeemCode()
     {
-        return $this->belongsTo('Furic\RedeemCodes\RedeemCode');
+        return $this->belongsTo('Furic\RedeemCodes\Models\RedeemCode');
     }
 
 }

@@ -12,12 +12,12 @@ class RedeemCodeReward extends Model
 
     public function redeemCode()
     {
-        return $this->belongsTo('Furic\RedeemCodes\RedeemCode');
+        return $this->belongsTo('Furic\RedeemCodes\Models\RedeemCode');
     }
 
     public function event()
     {
-        return $this->belongsTo('Furic\RedeemCodes\Event');
+        return $this->belongsTo('Furic\RedeemCodes\Models\Event');
     }
     
 }

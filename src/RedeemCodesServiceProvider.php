@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 class RedeemCodesServiceProvider extends ServiceProvider
 {
+
     /**
      * Bootstrap the application services.
      *
@@ -38,4 +39,5 @@ class RedeemCodesServiceProvider extends ServiceProvider
         //     __DIR__ . '/../config/redeem-codes.php', 'redeem-codes'
         // );
     }
+    
 }

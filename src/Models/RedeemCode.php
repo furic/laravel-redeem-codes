@@ -18,15 +18,15 @@ class RedeemCode extends Model
 
     public function event()
     {
-        return $this->belongsTo('Furic\RedeemCodes\Event');
+        return $this->belongsTo('Furic\RedeemCodes\Models\Event');
     }
     
     public function rewards()
     {
         if ($this->event != null) {
-            return $this->event->hasMany('Furic\RedeemCodes\RedeemCodeReward');
+            return $this->event->hasMany('Furic\RedeemCodes\Models\RedeemCodeReward');
         } else {
-            return $this->hasMany('Furic\RedeemCodes\RedeemCodeReward');
+            return $this->hasMany('Furic\RedeemCodes\Models\RedeemCodeReward');
         }
     }
     

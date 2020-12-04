@@ -37,6 +37,34 @@ class RedeemCodeController extends Controller
      */
     public function create(Request $request)
     {
+        return redirect()->route('redeem-codes.index');
+    }
+
+    /**
+     * Generate a random string with given length.
+     *
+     * @param  int  $length
+     * @return string
+     */
+    private function generateRandomString($length = 10)
+    {
+        $characters = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
+    /**
+     * Store a newly created redeem code resource in storage.
+     *
+     * @param  Request  $request
+     * @return \Illuminate\View\View
+     */
+    public function store(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'count' => 'required|numeric|min:1|max:500',
         ]);
@@ -82,34 +110,6 @@ class RedeemCodeController extends Controller
     }
 
     /**
-     * Generate a random string with given length.
-     *
-     * @param  int  $length
-     * @return string
-     */
-    private function generateRandomString($length = 10)
-    {
-        $characters = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
-    }
-
-    /**
-     * Store a newly created redeem code resource in storage.
-     *
-     * @param  Request  $request
-     * @return \Illuminate\View\View
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified redeem code resource.
      *
      * @param  int  $id
@@ -117,7 +117,7 @@ class RedeemCodeController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect()->route('redeem-codes.edit');
     }
 
     /**
@@ -128,7 +128,9 @@ class RedeemCodeController extends Controller
      */
     public function edit($id)
     {
-        // TODO
+        $redeemCode = RedeemCode::findOrFail($id);
+        $redeemCodesInEvent = $redeemCode->event->redeemCodes;
+        return view('redeem-codes::edit', compact('redeemCode', 'redeemCodesInEvent'));
     }
 
     /**
@@ -140,7 +142,41 @@ class RedeemCodeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $redeemCode = RedeemCode::findOrFail($id);
+        $input = $request->all();
+
+        $redeemCode->fill($input);
+        if ($request->has('reusable')) {
+            $redeemCode->reusable = true;
+        } else {
+            $redeemCode->reusable = false;
+        }
+        if ($request->has('redeemed')) {
+            $redeemCode->redeemed = $request->redeemed;
+        } else {
+            $redeemCode->redeemed = false;
+        }
+        $redeemCode->save();
+
+        if ($request->has('redeem-code-description')) {
+            $redeemCode->event->name = $request->redeem-code-description;
+            $redeemCode->event->save();
+        }
+        if ($request->has('reward_types')) {
+            $redeemCodeRewards = $redeemCode->rewards;
+            for ($i = 0; $i < count($request->reward_types); $i++) {
+                $redeemCodeReward = $i < $redeemCodeRewards->count() ? $redeemCodeRewards->slice($i, 1)->first() : new RedeemCodeReward;
+                $redeemCodeReward->event_id = $redeemCode->event->id;
+                $redeemCodeReward->type = $request->reward_types[$i];
+                $redeemCodeReward->amount = $request->reward_amounts[$i];
+                $redeemCodeReward->save();
+            }
+            for ($i = count($request->reward_types); $i < $redeemCodeRewards->count(); $i++) {
+                $redeemCodeReward = $redeemCodeRewards->slice($i, 1)->first();
+                $redeemCodeReward->delete();
+            }
+        }
+        return redirect()->route('redeem-codes.index')->with('message', 'Redeem code {$redeemCode->code} updated successfully.');
     }
 
     /**
@@ -151,6 +187,9 @@ class RedeemCodeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $redeemCode = RedeemCode::findOrFail($id);
+        $redeemCode->delete();
+        return redirect()->route('redeem-codes.index')->with('message', 'Redeem code {$redeemCode->code} deleted successfully.');
     }
+    
 }

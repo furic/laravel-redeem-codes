@@ -11,12 +11,12 @@ class Event extends Model
 
     public function redeemCodes()
     {
-        return $this->hasMany('Furic\RedeemCodes\RedeemCode');
+        return $this->hasMany('Furic\RedeemCodes\Models\RedeemCode');
     }
 
     public function redeemCodeRewards()
     {
-        return $this->hasMany('Furic\RedeemCodes\RedeemCodeReward');
+        return $this->hasMany('Furic\RedeemCodes\Models\RedeemCodeReward');
     }
 
 }

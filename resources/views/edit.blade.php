@@ -8,45 +8,57 @@
 			</div>
 			<div class="panel-body">
 				<!-- New Redeem Code Form -->
-				<form action="{{ url('redeem-codes') }}" method="PUT" class="form-horizontal">
+				<form action="{{ route('redeem-codes.update', $redeemCode->id) }}" method="POST" class="form-horizontal">
+					{{ method_field('PUT') }}
+					{{ csrf_field() }}
 					<div class="form-group">
-						<label for="redeem-code-prefix" class="col-sm-3 control-label">Redeem Code</label>
+						<label for="code" class="col-sm-3 control-label">Redeem Code</label>
 						<div class="col-sm-9">
-							{{ $redeemCode->code }}
+							<input type="text" id="code" class="form-control" placeholder="{{ $redeemCode->code }}" disabled>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="redeem-code-reusable" class="col-sm-3 control-label">Reusable</label>
 						<div class="col-sm-9">
-							<input type="checkbox" name="reusable" value="" id="redeem-code-reusable" class="form-control">
+							<input type="checkbox" name="reusable" value="1" id="redeem-code-reusable" class="form-control" {{ $redeemCode->reusable ? 'checked' : '' }}>
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="redeem-code-redeemed" class="col-sm-3 control-label">Redeemed</label>
+						<div class="col-sm-9">
+							<input type="checkbox" name="redeemed" value="1" id="redeem-code-redeemed" class="form-control" {{ $redeemCode->redeemed ? 'checked' : '' }}>
+						</div>
+					</div>
+					@if ($redeemCodesInEvent->count() > 1)
+					<div class="alert alert-info">
+						Changing info below also affect Redeem Code {{ $redeemCodesInEvent->implode('code', ', ') }}
+					</div>
+					@endif
+					<div class="form-group">
 						<label for="redeem-code-description" class="col-sm-3 control-label">Description (Optional)</label>
 						<div class="col-sm-9">
-							<input type="text" name="description" id="redeem-code-description" class="form-control" value="{{ $redeemCode->code }}">
+							<input type="text" name="description" id="redeem-code-description" class="form-control" value="{{ $redeemCode->event->name }}">
 						</div>
 					</div>
 					<div class="form-group" id="rewards">
 						<label for="redeem-code-reward-type-1" class="col-sm-3 control-label">Rewards</label>
-						<div class="col-sm-4">
-							<select name="reward_types[]" id="redeem-code-reward-type-1" class="form-control">
-								<option value="1" selected="selected">Coin</option>
-								<option value="2">Gem</option>
-								<option value="3">Level</option>
-								<option value="99">Remove Ads</option>
-							</select>
+						@foreach ($redeemCode->rewards as $i => $reward)
+						<div id="reward-{{ $i }}">
+							<div class="col-sm-4 {{ $i > 0 ? 'col-sm-offset-3' : '' }}">
+								<select name="reward_types[]" id="redeem-code-reward-type-{{ $i + 1 }}" class="form-control">
+									<option value="0" {{ $reward->type == 0 ? 'selected' : '' }}>Coin</option>
+									<option value="1" {{ $reward->type == 1 ? 'selected' : '' }}>Gem</option>
+									<option value="2" {{ $reward->type == 2 ? 'selected' : '' }}>Map</option>
+									<option value="100" {{ $reward->type == 100 ? 'selected' : '' }}>Level</option>
+									<option value="999" {{ $reward->type == 999 ? 'selected' : '' }}>Remove Ads</option>
+								</select>
+							</div>
+							<div class="col-sm-5">
+								<input type="number" name="reward_amounts[]" min="1" id="redeem-code-reward-amount-1" class="form-control" value="{{ $reward->amount }}">
+							</div>
 						</div>
-						<div class="col-sm-5">
-							<input type="number" name="reward_amounts[]" min="1" id="redeem-code-reward-amount-1" class="form-control">
-						</div>
-						<div id="reward-1"></div>
-					</div>
-					<div class="form-group">
-						<label for="redeem-code-reusable" class="col-sm-3 control-label">Redeemed</label>
-						<div class="col-sm-9">
-							<input type="checkbox" name="reusable" value="" id="redeem-code-reusable" class="form-control" value="{{ $redeemCode->redeemed }}">
-						</div>
+						@endforeach
+						<div id="reward-{{ $redeemCode->rewards->count() }}"></div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-4 col-sm-offset-3">
@@ -58,9 +70,9 @@
 					</div>
 					<!-- Add Redeem Code Button -->
 					<div class="form-group">
-						<div class="col-sm-offset-3 col-sm-6">
-							<button type="submit" class="btn btn-default">
-								<i class="fa fa-plus"></i> Add
+						<div class="col-sm-offset-1 col-sm-10">
+							<button type="submit" class="btn btn-primary btn-block">
+								<i class="fa fa-edit"></i> Edit
 							</button>
 						</div>
 					</div>
@@ -75,23 +87,22 @@
 <script>
 	$(document).ready(function() {
 		$('#redeem-code-reusable').change(function() {
-			console.log(this.checked);
 			$('#redeem-code-count-row').toggle(!this.checked);
 		});
-		var i = 1;
+		var i = {{ $redeemCode->rewards->count() }};
 		$('#add-reward').click(function() {
-			console.log('clicked');
 			$('#reward-' + i).html(`
 			<div class="col-sm-4 col-sm-offset-3">
-				<select name="reward_types[]" id="redeem-code-reward-type-` + (i + 1) + `" class="form-control">
-					<option value="1" selected="selected">Coin</option>
-					<option value="2">Gem</option>
-					<option value="3">Level</option>
-					<option value="99">Remove Ads</option>
+				<select name="reward_types[]" class="form-control">
+					<option value="0">Coin</option>
+					<option value="1">Gem</option>
+					<option value="2">Map</option>
+					<option value="100">Level</option>
+					<option value="999">Remove Ads</option>
 				</select>
 			</div>
 			<div class="col-sm-5">
-				<input type="number" name="reward_amounts[]" min="1" id="redeem-code-reward-amount-` + (i + 1) + `" class="form-control">
+				<input type="number" name="reward_amounts[]" min="1" class="form-control">
 			</div>
 			`);
 			$('#rewards').append('<div id="reward-' + (i + 1) + '"></div>');
