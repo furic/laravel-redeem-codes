@@ -13,7 +13,7 @@ class CreateRedeemCodesRewardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('redeem_code_rewards', function (Blueprint $table) {
+        Schema::create('redeem_code_rewards', function(Blueprint $table) {
             $table->increments('id');
 
             $table->integer('redeem_code_id')->unsigned()->nullable();

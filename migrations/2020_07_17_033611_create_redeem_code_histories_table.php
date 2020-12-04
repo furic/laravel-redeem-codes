@@ -13,7 +13,7 @@ class CreateRedeemCodeHistoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('redeem_code_histories', function (Blueprint $table) {
+        Schema::create('redeem_code_histories', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('redeem_code_id')->unsigned()->index();
             $table->string('ip', 15);

@@ -33,7 +33,7 @@ class RedeemCodeController extends Controller
     /**
      * Show the form for creating a new redeem code resource.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function create(Request $request)
     {
@@ -92,13 +92,14 @@ class RedeemCodeController extends Controller
             if (empty($request->prefix)) {
                 $redeemCode->code = $this->generateRandomString(12);
             } else {
-                $redeemCode->code = strtoupper($request->prefix) . $this->generateRandomString(12 - strlen($request->prefix));
+                $redeemCode->code = strtoupper($request->prefix).$this->generateRandomString(12 - strlen($request->prefix));
             }
             array_push($codes, $redeemCode->code);
             $redeemCode->save();
         }
 
-        for ($i = 0; $i < count($request->reward_types); $i++) {
+        $rewardTypesCount = count($request->reward_types);
+        for ($i = 0; $i < $rewardTypesCount; $i++) {
             $redeemCodeReward = new RedeemCodeReward;
             $redeemCodeReward->event_id = $event->id;
             $redeemCodeReward->type = $request->reward_types[$i];
@@ -113,7 +114,7 @@ class RedeemCodeController extends Controller
      * Display the specified redeem code resource.
      *
      * @param  int  $id
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function show($id)
     {
@@ -138,7 +139,7 @@ class RedeemCodeController extends Controller
      *
      * @param  Request  $request
      * @param  int  $id
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -158,8 +159,8 @@ class RedeemCodeController extends Controller
         }
         $redeemCode->save();
 
-        if ($request->has('redeem-code-description')) {
-            $redeemCode->event->name = $request->redeem-code-description;
+        if ($request->has('description')) {
+            $redeemCode->event->name = $request->description;
             $redeemCode->event->save();
         }
         if ($request->has('reward_types')) {
@@ -183,7 +184,7 @@ class RedeemCodeController extends Controller
      * Remove the specified redeem code resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
