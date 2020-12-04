@@ -80,7 +80,7 @@ class RedeemCodeController extends Controller
         $codes = [];
 
         if ($request->has('reusable')) { // Make sure reusable only generate one code only
-            $request->count = 1;
+            $request->merge(['count' => 1]);
         }
 
         for ($i = 0; $i < $request->count; $i++) {
@@ -165,14 +165,15 @@ class RedeemCodeController extends Controller
         }
         if ($request->has('reward_types')) {
             $redeemCodeRewards = $redeemCode->rewards;
-            for ($i = 0; $i < count($request->reward_types); $i++) {
+            $rewardTypesCount = count($request->reward_types);
+            for ($i = 0; $i < $rewardTypesCount; $i++) {
                 $redeemCodeReward = $i < $redeemCodeRewards->count() ? $redeemCodeRewards->slice($i, 1)->first() : new RedeemCodeReward;
                 $redeemCodeReward->event_id = $redeemCode->event->id;
                 $redeemCodeReward->type = $request->reward_types[$i];
                 $redeemCodeReward->amount = $request->reward_amounts[$i];
                 $redeemCodeReward->save();
             }
-            for ($i = count($request->reward_types); $i < $redeemCodeRewards->count(); $i++) {
+            for ($i = $rewardTypesCount; $i < $redeemCodeRewards->count(); $i++) {
                 $redeemCodeReward = $redeemCodeRewards->slice($i, 1)->first();
                 $redeemCodeReward->delete();
             }
