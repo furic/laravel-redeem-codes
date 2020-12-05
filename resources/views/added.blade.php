@@ -16,7 +16,7 @@
 					<a id="select-all" class="btn btn-default pull-left">Select All</a>
 				</div>
 				<div class="col-sm-6" style="margin-top: 20px">
-					<a class="btn btn-default pull-right" href="{{ url('redeem_codes') }}">Back</a>
+					<a class="btn btn-default pull-right" href="{{ route('redeem-codes.index') }}">Back</a>
 				</div>
 			</div>
 		</div>
