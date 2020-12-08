@@ -16,7 +16,7 @@ class CreateEventsTable extends Migration
         Schema::create('events', function(Blueprint $table) {
             $table->increments('id');
 
-            $table->tinyInteger('type')->unsigned()->default(0);
+            $table->tinyInteger('type')->unsigned()->default('0');
             $table->string('name', 127)->nullable();
             $table->date('start_at')->nullable();
             $table->date('end_at')->nullable();

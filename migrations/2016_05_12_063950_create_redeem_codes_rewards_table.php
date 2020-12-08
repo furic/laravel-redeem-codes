@@ -19,7 +19,7 @@ class CreateRedeemCodesRewardsTable extends Migration
             $table->integer('redeem_code_id')->unsigned()->nullable();
             $table->integer('event_id')->unsigned()->nullable();
             $table->tinyInteger('type')->unsigned()->nullable();
-            $table->integer('amount')->unsigned()->default(1);
+            $table->integer('amount')->unsigned()->default('1');
             $table->integer('item_id')->unsigned()->nullable();
 
             $table->timestamps();

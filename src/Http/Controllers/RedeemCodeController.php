@@ -144,9 +144,8 @@ class RedeemCodeController extends Controller
     public function update(Request $request, $id)
     {
         $redeemCode = RedeemCode::findOrFail($id);
-        $input = $request->all();
 
-        $redeemCode->fill($input);
+        $redeemCode->fill($request->all());
         if ($request->has('reusable')) {
             $redeemCode->reusable = true;
         } else {
