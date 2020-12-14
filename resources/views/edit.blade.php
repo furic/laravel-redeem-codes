@@ -4,7 +4,7 @@
 	<div class="col-sm-offset-2 col-sm-8">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				New Redeem Code
+				Edit Redeem Code - {{ $redeemCode->code }}
 			</div>
 			<div class="panel-body">
 				<!-- New Redeem Code Form -->

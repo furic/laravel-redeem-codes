@@ -32,6 +32,7 @@ class RedeemCodeController extends Controller
 
     /**
      * Show the form for creating a new redeem code resource.
+     * No need for the time being, simply redirect to index page.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
