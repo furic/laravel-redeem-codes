@@ -71,7 +71,7 @@ Here you can browse, create and edit the redeem codes.
 
 ### Redeem Validator API
 
-GET `<server url>/redeem/{code}`
+GET `<server url>/api/redeem/{code}`
 Posts the redeem code (12 characters length) and returns the redeem code data. For valid redeem codes, 200 status code is returned with the redeem code JSON data. Otherwise, 400 is returned with the error.
 
 API Document can be found [here](https://documenter.getpostman.com/view/2560814/TVmV6tm8#ea7b5c97-7ed2-40b9-91d0-a658a6088097).
