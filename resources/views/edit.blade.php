@@ -46,11 +46,13 @@
 						<div id="reward-{{ $i }}">
 							<div class="col-sm-4 {{ $i > 0 ? 'col-sm-offset-3' : '' }}">
 								<select name="reward_types[]" id="redeem-code-reward-type-{{ $i + 1 }}" class="form-control">
-									<option value="0" {{ $reward->type == 0 ? 'selected' : '' }}>Coin</option>
-									<option value="1" {{ $reward->type == 1 ? 'selected' : '' }}>Gem</option>
-									<option value="2" {{ $reward->type == 2 ? 'selected' : '' }}>Map</option>
-									<option value="100" {{ $reward->type == 100 ? 'selected' : '' }}>Level</option>
-									<option value="999" {{ $reward->type == 999 ? 'selected' : '' }}>Remove Ads</option>
+									<option value="1" {{ $reward->type == 0 ? 'selected' : '' }}>Coin</option>
+									<option value="2" {{ $reward->type == 1 ? 'selected' : '' }}>Gem</option>
+									<option value="4" {{ $reward->type == 2 ? 'selected' : '' }}>Remove Ads</option>
+									<option value="7" {{ $reward->type == 100 ? 'selected' : '' }}>Character</option>
+									<option value="10" {{ $reward->type == 999 ? 'selected' : '' }}>Energy</option>
+									<option value="18" {{ $reward->type == 999 ? 'selected' : '' }}>World</option>
+									<option value="22" {{ $reward->type == 999 ? 'selected' : '' }}>Revive</option>
 								</select>
 							</div>
 							<div class="col-sm-5">
@@ -94,11 +96,13 @@
 			$('#reward-' + i).html(`
 			<div class="col-sm-4 col-sm-offset-3">
 				<select name="reward_types[]" class="form-control">
-					<option value="0">Coin</option>
-					<option value="1">Gem</option>
-					<option value="2">Map</option>
-					<option value="100">Level</option>
-					<option value="999">Remove Ads</option>
+					<option value="1" selected="selected">Coins</option>
+					<option value="2">Gems</option>
+					<option value="4">Remove Ads</option>
+					<option value="7">Character</option>
+					<option value="10">Energy</option>
+					<option value="18">World</option>
+					<option value="22">Revive</option>
 				</select>
 			</div>
 			<div class="col-sm-5">
