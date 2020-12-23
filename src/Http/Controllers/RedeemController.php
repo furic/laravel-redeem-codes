@@ -22,13 +22,13 @@ class RedeemController extends Controller
     {
         $validator = Validator::make(['code' => $code], ['code' => 'exists:redeem_codes,code']);
         if ($validator->fails()) {
-            return response($validator->errors(), 400); // "The selected code is invalid."
+            return response(['error' => $validator->errors()->first()], 400); // "The selected code is invalid."
         }
 
         $redeemCode = RedeemCode::findByCode($code);
 
         if ($redeemCode->redeemed !== false) {
-            return response(['code' => ['The selected code has already been redeemed.']], 400);
+            return response(['error' => 'The selected code has already been redeemed.'], 400);
         }
 
         // Check event valid date
@@ -37,13 +37,13 @@ class RedeemController extends Controller
             if ($event->start_at != null) {
                 $validator = Validator::make($event->toArray(), ['start_at' => 'before:tomorrow']);
                 if ($validator->fails()) {
-                    return response(['code' => ['The selected code cannot be used yet.']], 400);
+                    return response(['error' => 'The selected code cannot be used yet.'], 400);
                 }
             }
             if ($event->end_at != null) {
                 $validator = Validator::make($event->toArray(), ['end_at' => 'after:yesterday']);
                 if ($validator->fails()) {
-                    return response(['code' => ['The selected code has expired.']], 400);
+                    return response(['error' => 'The selected code has expired.'], 400);
                 }
             }
         }
