@@ -8,7 +8,7 @@ class RedeemCode extends Model
 {
 
     protected $fillable = ['event_id', 'code', 'redeemed', 'reusable'];
-    protected $visible = ['event_id', 'code', 'reusable', 'rewards'];
+    protected $hidden = ['created_at', 'updated_at'];
     protected $appends = ['rewards'];
 
     public static function findByCode($code)
