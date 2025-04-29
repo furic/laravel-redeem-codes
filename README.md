@@ -1,4 +1,5 @@
-# laravel-redeem-codes
+
+# Laravel Redeem Codes
 
 [![Packagist](https://img.shields.io/packagist/v/furic/redeem-codes)](https://packagist.org/packages/furic/redeem-codes)
 [![Packagist](https://img.shields.io/packagist/dt/furic/redeem-codes)](https://packagist.org/packages/furic/redeem-codes)
@@ -6,87 +7,126 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/?branch=main)
 [![Build Status](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/badges/build.png?b=main)](https://scrutinizer-ci.com/g/furic/laravel-redeem-codes/build-status/main)
 
-> Redeem code generator and redeemer for [Laravel 5.*](https://laravel.com/). I developed this package while working for a redeem code solution in [Sweaty Chair Studio](https://www.sweatychair.com) catering for compensations and event rewards for players. This contains API for redeem code validation and a simple web console to create and edit the redeem codes. This package is aimed to be a plug-n-play solution, I would also recommend [Laravel Promocodes](https://github.com/zgabievi/laravel-promocodes) and [Laravel Vouchers](https://github.com/beyondcode/laravel-vouchers) that gives you more freedom and being able to build from scratch.
+> A plug-and-play redeem code management system for [Laravel](https://laravel.com/) applications.
+
+`laravel-redeem-codes` is a lightweight package for managing and redeeming codes in Laravel projects. Originally developed for player compensation and event reward systems at [Sweaty Chair Studio](https://www.sweatychair.com), this package offers both a clean API and a simple web-based console for managing redeem codes.
+
+If you're looking for more flexible implementations, also consider:
+- [Laravel Promocodes](https://github.com/zgabievi/laravel-promocodes)
+- [Laravel Vouchers](https://github.com/beyondcode/laravel-vouchers)
+
+---
 
 ## Table of Contents
+
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
-    - [Web Console](#web-console)
-    - [Redeem Code Parameters](#redeem-code-parameters)
-    - [Redeem Validator API](#redeem-validator-api)
-    - [Unity Client Repo](#unity-client-repo)
+  - [Web Console](#web-console)
+  - [Redeem Code Parameters](#redeem-code-parameters)
+  - [Redeem Validator API](#redeem-validator-api)
+  - [Unity Client Integration](#unity-client-integration)
 - [TODO](#todo)
 - [License](#license)
 
+---
+
 ## Installation
 
-Install this package via Composer:
+Install the package via Composer:
+
 ```bash
-$ composer require furic/redeem-codes
+composer require furic/redeem-codes
 ```
 
-> If you are using Laravel 5.5 or later, then installation is done. Otherwise follow the next steps.
+> Laravel 5.5+ will auto-discover the service provider. For earlier versions, register it manually.
 
-#### Open `config/app.php` and follow steps below:
+### Manual Setup (for Laravel < 5.5)
 
-Find the `providers` array and add our service provider.
+Add the service provider to your `config/app.php`:
 
 ```php
 'providers' => [
     // ...
-    Furic\RedeemCodes\RedeemCodesServiceProvider::class
+    Furic\RedeemCodes\RedeemCodesServiceProvider::class,
 ],
 ```
 
+---
+
 ## Configuration
 
-Publish config & migration file using Artisan command:
+Publish the package's configuration and migration files:
+
 ```bash
-$ php artisan vendor:publish
+php artisan vendor:publish
 ```
 
-To create table for redeem codes in database run:
+Then run the migration to create the redeem codes table:
+
 ```bash
-$ php artisan migrate
+php artisan migrate
 ```
+
+---
 
 ## Usage
 
 ### Web Console
 
-After installation, you can simply browse to `<server url>`/redeem-codes to open the web console:
+Visit your application at `/redeem-codes` to access the web-based admin console.
 
 ![Laravel Redeem Codes web console](https://www.richardfu.net/wp-content/uploads/laravel-redeem-codes-console.jpg)
 
-Here you can browse, create and edit the redeem codes.
+Use this interface to browse, create, and manage redeem codes visually.
+
+---
 
 ### Redeem Code Parameters
 
-- Code Prefix: Set the prefix of the redeem code(s), used for being easier to distingush or with event name. Note that all redeem codes has fixed 12 characters length.
-- Reusable: Set if the redeem code(s) is reusable for different players. Note that the server doesn't check if the same user redeeming multiple times, you should add a check to prevent this in your client app.
-- Count: Number of redeem code(s) to create.
-- Description: The description of the redeem code(s).
-- Rewards: The reward type and count, you can add multiple rewards here. The reward type simply is a tiny int and should be convert to Enum in your client app. To add change/add reward type, simply edit the [index.blade.php](src/views/index.blade.php) file.
+When creating a redeem code, the following fields are available:
+
+- **Code Prefix**: Optional prefix for the redeem code(s), useful for organizing events (e.g., `EASTER23_`). All codes are 12 characters in total.
+- **Reusable**: If enabled, the same code can be used by multiple users. Note: the package does not enforce per-user usage restrictions—you must handle this on the client side.
+- **Count**: Number of codes to generate.
+- **Description**: Internal notes about the purpose of the code batch.
+- **Rewards**: Define one or more reward types with a quantity. Rewards are stored as numeric types and should be interpreted using an Enum or similar mapping on the client side.
+
+> To modify reward types or customize the form, edit the `index.blade.php` file.
+
+---
 
 ### Redeem Validator API
 
-GET `<server url>/api/redeem/{code}`
-Posts the redeem code (12 characters length) and returns the redeem code data. For valid redeem codes, 200 status code is returned with the redeem code JSON data. Otherwise, 400 is returned with the error.
+The API endpoint:
 
-API Document can be found [here](https://documenter.getpostman.com/view/2560814/TVmV6tm8#ea7b5c97-7ed2-40b9-91d0-a658a6088097).
+```
+GET /api/redeem/{code}
+```
 
-### Unity Client Repo
-You can simply import [this repo](https://github.com/furic/Unity-Redeem-Codes) in Unity to communicate with your Laravel server with this package.
+This will return the reward data in JSON format for valid codes (HTTP `200`) or an error response (HTTP `400`) if invalid, already used, or expired.
+
+Explore the API in the [Postman documentation](https://documenter.getpostman.com/view/2560814/TVmV6tm8#ea7b5c97-7ed2-40b9-91d0-a658a6088097).
+
+---
+
+### Unity Client Integration
+
+If you're using Unity, you can connect easily using this open source client:
+👉 [Unity-Redeem-Codes Repo](https://github.com/furic/Unity-Redeem-Codes)
+
+---
 
 ## TODO
 
-- Add item types configurable in config file.
-- Add admin login for web console.
-- Add tests and factories.
-- Add redeem history page (already in database).
-- Add reusable server check (low priority).
+- ✅ Add configurable reward item types via config file.
+- 🔒 Add authentication for web console (currently open).
+- 🧪 Add tests and model factories.
+- 📜 Add history log page (already logged in DB).
+- ⚠ Add server-side check for reusable codes (low priority).
+
+---
 
 ## License
 
-laravel-redeem-codes is licensed under a [MIT License](https://github.com/furic/laravel-redeem-codes/blob/main/LICENSE).
+This package is open-sourced software licensed under the [MIT license](https://github.com/furic/laravel-redeem-codes/blob/main/LICENSE).
